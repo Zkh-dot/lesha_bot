@@ -49,7 +49,8 @@ const getInvoice = (id) => {
   bot.use(Telegraf.log())
   
   bot.hears('pay', (ctx) => { // это обработчик конкретного текста, данном случае это - "pay"
-    return ctx.replyWithInvoice(getInvoice(ctx.from.id)) //  метод replyWithInvoice для выставления счета  
+    return ctx.replyWithInvoice(getInvoice(ctx.from.id));
+    choises_serv[ctx.chat.id] = [0,0,0,0,0,0]; //  метод replyWithInvoice для выставления счета  
   })
   
   bot.on('pre_checkout_query', (ctx) => ctx.answerPreCheckoutQuery(true)) // ответ на предварительный запрос по оплате
@@ -118,6 +119,10 @@ bot.command('vegans', (ctx) =>{
     choises[ctx.chat.id].push(2);
     ctx.reply('Вы выбрали салат веганский');
     choises_serv[ctx.chat.id][2]++;
+})
+
+bot.command('ipconfig', (ctx) =>{ 
+  ctx.reply( ); 
 })
 
 bot.command('meat', (ctx) =>{
